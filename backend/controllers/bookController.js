@@ -57,7 +57,6 @@ exports.updateBook = async (req, res) => {
       return res.status(404).json({ msg: 'Book not found' });
     }
 
-    // Ensure only the owner can update the book
     if (book.owner.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     }
@@ -68,7 +67,7 @@ exports.updateBook = async (req, res) => {
     if (author) book.author = author;
     if (genre) book.genre = genre;
     if (location) book.location = location;
-    if (status) book.status = status; // Update the status
+    if (status) book.status = status;
     if (coverImage) book.coverImage = coverImage;
 
     await book.save();

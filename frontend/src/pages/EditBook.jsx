@@ -28,7 +28,6 @@ function EditBook() {
       const response = await bookApi.getBookById(id);
       const book = response.data;
 
-      // Ensure only the owner can edit the book
       if (book.owner._id !== currentUser._id) {
         setError('You are not authorized to edit this book.');
         setLoading(false);
