@@ -32,8 +32,8 @@ function BookDetail() {
   const handleStatusChange = async (status) => {
     try {
       setStatusUpdating(true);
-      await bookApi.updateBook(id, { status });
-      await fetchBook();
+      await bookApi.updateBook(id, { status }); // Send the updated status to the backend
+      await fetchBook(); // Refresh the book details after updating
       setStatusUpdating(false);
     } catch (error) {
       console.error('Error updating book status:', error);
@@ -164,28 +164,28 @@ function BookDetail() {
                     </button>
                   ) : (
                     <div className="flex gap-2">
-                      <button
-                        onClick={() => handleStatusChange('available')}
-                        className={`btn-secondary ${book.status === 'available' ? 'bg-green-50 border-green-200' : ''}`}
-                        disabled={book.status === 'available'}
-                      >
-                        Mark Available
-                      </button>
-                      <button
-                        onClick={() => handleStatusChange('rented')}
-                        className={`btn-secondary ${book.status === 'rented' ? 'bg-yellow-50 border-yellow-200' : ''}`}
-                        disabled={book.status === 'rented'}
-                      >
-                        Mark Rented
-                      </button>
-                      <button
-                        onClick={() => handleStatusChange('exchanged')}
-                        className={`btn-secondary ${book.status === 'exchanged' ? 'bg-gray-200 border-gray-300' : ''}`}
-                        disabled={book.status === 'exchanged'}
-                      >
-                        Mark Exchanged
-                      </button>
-                    </div>
+  <button
+    onClick={() => handleStatusChange('available')}
+    className={`btn-secondary ${book.status === 'available' ? 'bg-green-50 border-green-200' : ''}`}
+    disabled={book.status === 'available'} // Disable if already available
+  >
+    Mark Available
+  </button>
+  <button
+    onClick={() => handleStatusChange('rented')}
+    className={`btn-secondary ${book.status === 'rented' ? 'bg-yellow-50 border-yellow-200' : ''}`}
+    disabled={book.status === 'rented'} // Disable if already rented
+  >
+    Mark Rented
+  </button>
+  <button
+    onClick={() => handleStatusChange('exchanged')}
+    className={`btn-secondary ${book.status === 'exchanged' ? 'bg-gray-200 border-gray-300' : ''}`}
+    disabled={book.status === 'exchanged'} // Disable if already exchanged
+  >
+    Mark Exchanged
+  </button>
+</div>
                   )}
                 </>
               ) : (

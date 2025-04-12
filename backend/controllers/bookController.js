@@ -52,31 +52,29 @@ exports.getBookById = async (req, res) => {
 exports.updateBook = async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
-    
+
     if (!book) {
       return res.status(404).json({ msg: 'Book not found' });
     }
-    
+
+    // Ensure only the owner can update the book
     if (book.owner.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'User not authorized' });
     }
-    
+
     const { title, author, genre, location, status, coverImage } = req.body;
-    
+
     if (title) book.title = title;
     if (author) book.author = author;
     if (genre) book.genre = genre;
     if (location) book.location = location;
-    if (status) book.status = status;
+    if (status) book.status = status; // Update the status
     if (coverImage) book.coverImage = coverImage;
-    
+
     await book.save();
     res.json(book);
   } catch (err) {
     console.error(err.message);
-    if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Book not found' });
-    }
     res.status(500).send('Server Error');
   }
 };

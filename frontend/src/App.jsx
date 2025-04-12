@@ -11,6 +11,7 @@ import AddBook from './pages/AddBook';
 import Profile from './pages/Profile';
 import PrivateRoute from './components/PrivateRoute';
 import OwnerRoute from './components/OwnerRoute';
+import EditBook from './pages/EditBook';
 import { useAuth } from './context/AuthContext';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/books/:id" element={<BookDetail />} />
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/add-book" element={<OwnerRoute><AddBook /></OwnerRoute>} />
+          <Route path="/edit-book/:id" element={<EditBook />} />
         </Routes>
       </main>
       <Footer />
