@@ -112,3 +112,9 @@ bookcircle/
 ## References
 
 I took a little help from GitHub Copilot for building the frontend, and whenever I was unable to solve an error, I took help from ChatGPT.
+
+
+## Video Drive Link
+
+https://drive.google.com/drive/folders/1rphGtMp2iA0PnLiNVz8vjMIAFfIgen7L?usp=sharing
+
